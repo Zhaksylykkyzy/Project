@@ -1,10 +1,11 @@
-package BookStore.client.pages;
+package BookStore.client.pages.ADMIN;
 
 // Admin->Books(Админ может добавить книги, редактировать, удалить книг)
 import BookStore.client.applications.LabelApplication;
 import BookStore.client.applications.PanelApplication;
 import BookStore.client.applications.ButtonApplication;
 import BookStore.client.applications.FieldApplication;
+import BookStore.client.pages.ClientFrame;
 import BookStore.data.Plus;
 
 import javax.swing.*;
@@ -54,23 +55,25 @@ public class PlusPage extends PanelApplication {
                 jComboBox.setSelectedItem(model.getValueAt(i,6).toString());
             }
 
+            /*ДЛЯ ЭТИХ МЕТОДОВ
+            *   Когда событие от нажатия мыши происходит, соответствуйюший метод в объекте слушателя вызывается, и MouseEvent передается к MouseListener*/
             @Override
-            public void mousePressed(MouseEvent e) {
+            public void mousePressed(MouseEvent e) { // метод, вызванный, когда кнопка мыши была нажата на компоненте
 
             }
 
             @Override
-            public void mouseReleased(MouseEvent e) {
+            public void mouseReleased(MouseEvent e) {// метод, вызванный, когда кнопка мыши была отпущена на компоненте
 
             }
 
             @Override
-            public void mouseEntered(MouseEvent e) {
+            public void mouseEntered(MouseEvent e) { //метод, вызванный, когда мышь вводит компонент
 
             }
 
             @Override
-            public void mouseExited(MouseEvent e) {
+            public void mouseExited(MouseEvent e) {// метод, вызванный, когда мышь входит из компонента
 
             }
         });
@@ -137,8 +140,8 @@ public class PlusPage extends PanelApplication {
         jComboBox.setBorder(new EtchedBorder(Color.black,Color.black));
         add(jComboBox);
 
-        addButton=new ButtonApplication("ADD");
-        addButton.setLocation(360, 450);
+        addButton=new ButtonApplication("~ADD~");
+        addButton.setLocation(388, 445);
         add(addButton);
         addButton.addActionListener(new ActionListener() {
             @Override
@@ -155,6 +158,7 @@ public class PlusPage extends PanelApplication {
                 else{
                     Plus plus=new Plus(null,name,price,count,country,year,gt);
                     clientFrame.clientSocket.addPlus(plus);
+                    idField.setText("");
                     nameField.setText("");
                     priceField.setText("");
                     countField.setText("");
@@ -168,8 +172,8 @@ public class PlusPage extends PanelApplication {
             }
         });
 
-        editButton=new ButtonApplication("EDIT");
-        editButton.setLocation(360, 500);
+        editButton=new ButtonApplication("~EDIT~");
+        editButton.setLocation(388, 495);
         add(editButton);
         editButton.addActionListener(new ActionListener() {
             @Override
@@ -183,27 +187,41 @@ public class PlusPage extends PanelApplication {
                 String gt=jComboBox.getSelectedItem().toString();
                 Plus device=new Plus(id, name, price, count, country, year, gt);
                 clientFrame.clientSocket.editPlus(device);
+                idField.setText("");
+                nameField.setText("");
+                priceField.setText("");
+                countField.setText("");
+                jCombocountries.setSelectedIndex(0);
+                yearField.setText("");
+                jComboBox.setSelectedIndex(0);
                 clearPlus();
                 updatePlus();
             }
         });
 
-        deleteButton=new ButtonApplication("DELETE");
-        deleteButton.setLocation(360, 550);
+        deleteButton=new ButtonApplication("~DELETE~");
+        deleteButton.setLocation(388, 545);
         add(deleteButton);
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Long id=Long.valueOf(idField.getText());
-                Plus device=new Plus(id, null, 0, 0, null, 0 , null);
-                clientFrame.clientSocket.deletePlus(device);
+                Plus plus=new Plus(id, null, 0, 0, null, 0 , null);
+                clientFrame.clientSocket.deletePlus(plus);
+                idField.setText("");
+                nameField.setText("");
+                priceField.setText("");
+                countField.setText("");
+                jCombocountries.setSelectedIndex(0);
+                yearField.setText("");
+                jComboBox.setSelectedIndex(0);
                 clearPlus();
                 updatePlus();
             }
         });
 
-        backButton=new ButtonApplication("BACK");
-        backButton.setLocation(360, 600);
+        backButton=new ButtonApplication("~BACK~");
+        backButton.setLocation(388, 645);
         add(backButton);
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -212,8 +230,8 @@ public class PlusPage extends PanelApplication {
                 clientFrame.adminPage.setVisible(true);
             }
         });
-        refreshButton=new ButtonApplication("Refresh");
-        refreshButton.setLocation(360,650);
+        refreshButton=new ButtonApplication("~REFRESH~");
+        refreshButton.setLocation(388,595);
         add(refreshButton);
         refreshButton.addActionListener(new ActionListener() {
             @Override

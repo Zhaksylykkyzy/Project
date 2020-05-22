@@ -1,8 +1,9 @@
-package BookStore.client.pages;
+package BookStore.client.pages.ADMIN;
 
 import BookStore.client.applications.LabelApplication;
 import BookStore.client.applications.PanelApplication;
 import BookStore.client.applications.ButtonApplication;
+import BookStore.client.pages.ClientFrame;
 import BookStore.data.Plus;
 
 import javax.swing.*;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 public class ProfitPage extends PanelApplication {
     public ClientFrame parent;
     private ButtonApplication backButton, refreshButton;
-    private LabelApplication label, textLabel;
+    private JLabel label;
     private Object[] columns={"ID", "NAME", "PRICE", "COUNT", "COUNTRY", "YEAR", "GENRE", "SOLD"};
     private JTable table;
     private DefaultTableModel model;
@@ -38,24 +39,26 @@ public class ProfitPage extends PanelApplication {
         updatePlus();
 
 
-        label=new LabelApplication("Total profit: "+Integer.toString(getTotalPrice()));
-        label.setBounds(400, 450, 300, 30);
+        label=new LabelApplication("Total profit: "+Integer.toString(getTotalPrice())+" tg");
+        label.setFont(new Font("Arial",Font.BOLD,17));
+        label.setBounds(370, 450, 300, 30);
         add(label);
 
-        refreshButton=new ButtonApplication("REFRESH");
-        refreshButton.setLocation(200, 500);
+        refreshButton=new ButtonApplication("~REFRESH~");
+        refreshButton.setLocation(212, 500);
         add(refreshButton);
         refreshButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                label.setText("Total profit: "+Integer.toString(getTotalPrice()));
+                label.setFont(new Font("Arial",Font.BOLD,17));
+                label.setText("Total profit: "+Integer.toString(getTotalPrice()) + " tg");
                 clearPlus();
                 updatePlus();
             }
         });
 
-        backButton=new ButtonApplication("BACK");
-        backButton.setLocation(200, 550);
+        backButton=new ButtonApplication("~BACK~");
+        backButton.setLocation(212, 550);
         add(backButton);
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -81,7 +84,7 @@ public class ProfitPage extends PanelApplication {
                 row[6]=d.getGenre();
                 row[7]=d.getSold();
                 model.addRow(row);
-                //total+=d.getSold()*d.getPrice();
+               // total+=d.getSold()*d.getPrice();
             }
 
         }

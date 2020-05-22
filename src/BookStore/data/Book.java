@@ -2,21 +2,21 @@ package BookStore.data;
 
 import java.io.Serializable;
 
-public abstract class Book implements Serializable {
-    private Long id;
+public abstract class Book implements Serializable { //Потому что,  мы будем его в сети будем передавать
+    private Long id; // чтобы можно было задавать на id null
     private String name;
     private int price;
-    private int count;
-    private int sold;
+    private int count; // сколько книг есть
+    private int sold; // сколько продано
     public abstract String showDetails();
 
     public Book() {}
-
     public Book(Long id, String name, int price, int count) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.count = count;
+
     }
 
     public Book(Long id, String name, int price, int count, int sold) {

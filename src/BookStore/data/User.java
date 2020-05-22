@@ -2,15 +2,14 @@ package BookStore.data;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
-    private Long id;
+public class User implements Serializable { //Потому что,  мы будем его в сети передавать
+    private Long id; // чтобы можно было задавать на id null
     private String login;
     private String password;
     private String imya;
-    private int role;
+    private int role;//admin=1; user=2;
 
     public User() {}
-
     public User(Long id, String login, String password, String imya, int role) {
         this.id = id;
         this.login = login;

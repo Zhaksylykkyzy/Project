@@ -5,8 +5,8 @@ import java.awt.*;
 
 public class PanelApplication extends JPanel {
     public PanelApplication(){
-        setSize(600, 800);
+        setSize(605, 800);
         setLayout(null);
-        setBackground(Color.GRAY);
+        setBackground(Color.darkGray);
     }
 }

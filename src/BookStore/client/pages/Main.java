@@ -11,7 +11,7 @@ public class Main extends PanelApplication {
     private ButtonApplication loginButton, registerButton, exitButton;
     public Main(ClientFrame parent){
         this.parent=parent;
-        loginButton=new ButtonApplication("SIGN IN");
+        loginButton=new ButtonApplication("~SIGN IN~");
         loginButton.setLocation(196,150);
         add(loginButton);
         loginButton.addActionListener(new ActionListener() {
@@ -22,7 +22,7 @@ public class Main extends PanelApplication {
             }
         });
 
-        registerButton=new ButtonApplication("REGISTRATION");
+        registerButton=new ButtonApplication("~REGISTRATION~");
         registerButton.setLocation(196,220);
         add(registerButton);
         registerButton.addActionListener(new ActionListener() {
@@ -33,7 +33,7 @@ public class Main extends PanelApplication {
             }
         });
 
-        exitButton=new ButtonApplication("EXIT");
+        exitButton=new ButtonApplication("~EXIT~");
         exitButton.setLocation(196,290);
         add(exitButton);
         exitButton.addActionListener(new ActionListener() {

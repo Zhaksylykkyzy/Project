@@ -9,17 +9,17 @@ import java.net.Socket;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ServerApp {
-    public static Connection connection;
+public class ServerApp {    //Все методы в ServerApp будут STATIC потому что работаем с THREAD
+    public static Connection connection; // сделаем static обязательно
     public static void main(String args[]){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection= DriverManager.getConnection("jdbc:mysql://localhost:3306/book_store?useUnicode=true&serverTimezone=UTC","root", "");
             ServerSocket serverSocket=new ServerSocket(2015);
-            System.out.println("Now it's the customer's turn...");
+            System.out.println("Now it's the client's turn...");
             while(true){
                 Socket socket=serverSocket.accept();
-                System.out.println("Customer connected!");
+                System.out.println("Client connected!");
                 ServerThread serverThread=new ServerThread(socket);
                 serverThread.start();
             }

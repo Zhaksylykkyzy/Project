@@ -1,7 +1,9 @@
-package BookStore.client.pages;
+package BookStore.client.pages.CLIENT;
 
 import BookStore.client.applications.PanelApplication;
 import BookStore.client.applications.ButtonApplication;
+import BookStore.client.pages.ClientApp;
+import BookStore.client.pages.ClientFrame;
 import BookStore.data.UserBuy;
 
 
@@ -38,18 +40,18 @@ public class HistoryPage extends PanelApplication {
             updateBook();
         }
 
-        refreshButton=new ButtonApplication("REFRESH");
+        refreshButton=new ButtonApplication("~REFRESH~");
         refreshButton.setLocation(200, 450);
         add(refreshButton);
         refreshButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateBook();
                 clearBook();
+                updateBook();
             }
         });
 
-        backButton=new ButtonApplication("BACK");
+        backButton=new ButtonApplication("~BACK~");
         backButton.setLocation(200, 500);
         add(backButton);
         backButton.addActionListener(new ActionListener() {

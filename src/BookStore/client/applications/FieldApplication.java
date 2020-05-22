@@ -10,7 +10,7 @@ public class FieldApplication extends JTextField {
         setBackground(Color.white);
         setForeground(Color.black);
         setFont(new Font("Arial",Font.BOLD, 16));
-        setBorder(new EtchedBorder(Color.GRAY,Color.GRAY));
+        setBorder(new EtchedBorder(Color.black,Color.black));
     }
 
 

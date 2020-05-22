@@ -17,15 +17,15 @@ public class ClientSocket {
     private ObjectInputStream ois;
 
     public ClientSocket() {
-        try {
+        try {   // уже когда кто-то в ClientFrame конструктор вызывет, подключение будет
             socket=new Socket("localhost",2015);
-            oos=new ObjectOutputStream(socket.getOutputStream());
+            oos=new ObjectOutputStream(socket.getOutputStream());//всегда надо создавать oos первым
             ois=new ObjectInputStream(socket.getInputStream());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public void disconnect(){
+    public void disconnect(){ // когда клиент хочет выйти, надо закрывать oos,ois
         try {
             oos.close();
             ois.close();
@@ -35,9 +35,9 @@ public class ClientSocket {
         }
     }
     public void addUser(User user){
-        Packet packet=new Packet("ADD_USER",user);
+        Packet packet=new Packet("ADD_USER",user); // вот здесь используем код в Packet
         try {
-            oos.writeObject(packet);
+            oos.writeObject(packet);  // отправляем Packet с user и он должен зарегистировать его
         } catch (IOException e) {
             e.printStackTrace();
         }

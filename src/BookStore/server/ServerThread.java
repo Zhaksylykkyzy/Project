@@ -15,7 +15,7 @@ public class ServerThread extends Thread {
 
     public ServerThread(Socket socket) {
         this.socket = socket;
-    }
+    } // через конструктор принимает Socket
 
     public void run(){
         try {

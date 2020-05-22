@@ -1,10 +1,12 @@
-package BookStore.client.pages;
+package BookStore.client.pages.CLIENT;
 
 //Клиент может купить книги
 import BookStore.client.applications.LabelApplication;
 import BookStore.client.applications.PanelApplication;
 import BookStore.client.applications.ButtonApplication;
 import BookStore.client.applications.FieldApplication;
+import BookStore.client.pages.ClientApp;
+import BookStore.client.pages.ClientFrame;
 import BookStore.data.Plus;
 import BookStore.data.UserBuy;
 
@@ -27,16 +29,17 @@ public class BuyPlusPage extends PanelApplication {
     private String[] country={"","Kazakhstan","Russia","USA","Uzbekistan","France","Ukraine"};
     private Object[] columns={"ID", "NAME", "PRICE", "COUNT", "COUNTRY", "YEAR", "GENRE"};
     private JComboBox jCombodt, jCombocountry;
+    // чтобы работать с таблицой надо следующие три объекта:
     private JTable table;
-    private DefaultTableModel model;
-    private JScrollPane pane;
+    private DefaultTableModel model; //model  нужен для того чтобы,работать с данными,model будет находится внутри table
+    private JScrollPane pane;// надо при изменении размера слайдеры автоматический вышли
     private ArrayList<Plus> pluses;
 
     public BuyPlusPage(ClientFrame parent) {
         this.parent = parent;
         table=new JTable();
         model=new DefaultTableModel();
-        model.setColumnIdentifiers(columns);
+        model.setColumnIdentifiers(columns);//columns из-за того что у нас таблица не STRING, а OBJECT
         table.setModel(model);
         table.setBackground(Color.WHITE);
         table.setForeground(Color.black);
@@ -137,7 +140,7 @@ public class BuyPlusPage extends PanelApplication {
         jCombodt.setBorder(new EtchedBorder(Color.black,Color.black));
         add(jCombodt);
 
-        buyButton=new ButtonApplication("BUY");
+        buyButton=new ButtonApplication("~BUY~");
         buyButton.setLocation(360, 450);
         add(buyButton);
         buyButton.addActionListener(new ActionListener() {
@@ -158,6 +161,7 @@ public class BuyPlusPage extends PanelApplication {
                     parent.clientSocket.buyPlus(userBuy);
                     Plus plus=new Plus(id, null, 0, count, null, 0, null);
                     parent.clientSocket.editPlusBuy(plus);
+                    idField.setText("");
                     nameField.setText("");
                     priceField.setText("");
                     countField.setText("");
@@ -171,8 +175,8 @@ public class BuyPlusPage extends PanelApplication {
             }
         });
 
-        backButton=new ButtonApplication("BACK");
-        backButton.setLocation(360, 500);
+        backButton=new ButtonApplication("~BACK~");
+        backButton.setLocation(360, 550);
         add(backButton);
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -181,8 +185,8 @@ public class BuyPlusPage extends PanelApplication {
                 parent.userPage.setVisible(true);
             }
         });
-        refreshButton=new ButtonApplication("Refresh");
-        refreshButton.setLocation(360,550);
+        refreshButton=new ButtonApplication("~REFRESH~");
+        refreshButton.setLocation(360,500);
         add(refreshButton);
         refreshButton.addActionListener(new ActionListener() {
             @Override
